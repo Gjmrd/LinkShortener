@@ -54,11 +54,5 @@ namespace LinkShortener.Controllers
             return Ok(links);
         }
 
-        [HttpGet("/test")]
-        public IActionResult Test()
-        {
-            return Ok(HttpContext.Session.GetString("UserId"));
-        }
-
     }
 }
