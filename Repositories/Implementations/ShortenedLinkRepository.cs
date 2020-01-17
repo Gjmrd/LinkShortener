@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LinkShortener.Data.Repositories
+namespace LinkShortener.Repositories.Implementations
 {
-    public class ShortenLinkRepository : IShortenedLinkRepository
+    public class ShortenedLinkRepository : IShortenedLinkRepository
     {
         private readonly IMongoCollection<ShortenedLink> _links;
 
-        public ShortenLinkRepository(IShortenedLinkDatabaseSettings settings)
+        public ShortenedLinkRepository(IShortenedLinkDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
@@ -23,7 +23,7 @@ namespace LinkShortener.Data.Repositories
 
         public Task<List<ShortenedLink>> GetAsync() => _links.Find(link => true).ToListAsync();
 
-        public Task<ShortenedLink> GetAsync(string id) => _links.Find<ShortenedLink>(link => link.Id == id).FirstOrDefaultAsync();
+        public Task<ShortenedLink> GetAsync(string id) => _links.Find(link => link.Id == id).FirstOrDefaultAsync();
 
         public async Task<ShortenedLink> AddAsync(ShortenedLink link)
         {
@@ -43,5 +43,5 @@ namespace LinkShortener.Data.Repositories
 
             await _links.UpdateOneAsync(filter, update);
         }
-    } 
+    }
 }

@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LinkShortener.Data.Repositories;
 using LinkShortener.Models;
+using LinkShortener.Repositories;
+using LinkShortener.Repositories.Implementations;
 using LinkShortener.Services;
 using LinkShortener.Services.Implementations;
 using Microsoft.AspNetCore.Builder;
@@ -47,7 +48,7 @@ namespace LinkShortener
             services.AddSingleton<IShortenedLinkDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<ShortenedLinkDatabaseSettings>>().Value);
 
-            services.AddTransient<IShortenedLinkRepository, ShortenLinkRepository>();
+            services.AddTransient<IShortenedLinkRepository, ShortenedLinkRepository>();
 
             services.AddTransient<IShortenedLinkService, ShortenedLinkService>();
 

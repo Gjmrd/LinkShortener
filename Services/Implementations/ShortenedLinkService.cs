@@ -1,6 +1,6 @@
-﻿using LinkShortener.Data.Repositories;
-using LinkShortener.Extensions;
+﻿using LinkShortener.Extensions;
 using LinkShortener.Models;
+using LinkShortener.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
